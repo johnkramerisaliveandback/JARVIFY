@@ -208,6 +208,10 @@ tempCodeRunnerFile.py
 # Ruff stuff:
 .ruff_cache/
 
+# Downloaded AI models
+models/
+faster-whisper/
+
 # PyPI configuration file
 .pypirc
 
