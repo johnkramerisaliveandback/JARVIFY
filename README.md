@@ -191,4 +191,8 @@ Speak clearly after the wake-word confirmation and reduce background noise. You 
 
 ## License
 
-No license file is currently included. Until you add a license, do not assume that others have permission to reuse, modify, or redistribute this project's code.
+JARVIFY is provided under the **JARVIFY Personal-Use License** in the [LICENSE](LICENSE) file.
+
+You may download and use it for personal purposes. You may **not** re-upload, redistribute, republish, sell, or publish modified versions, or claim the project/source code as your own, unless you have prior written permission from the copyright holder. All other rights are reserved.
+
+This is a restrictive, custom license—not an open-source license such as MIT. Public visibility on GitHub does not mean the code is free to relicense or redistribute. See [LICENSE](LICENSE) for the complete terms.
