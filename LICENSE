@@ -1,16 +1,26 @@
-MIT License
+JARVIFY PERSONAL-USE LICENSE
 
-Copyright (c) 2026 johnkramerisaliveandback
+Copyright (c) 2026 johnkramerisaliveandback. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is granted to download, install, and use JARVIFY for personal use,
+subject to the terms below.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You may:
+- Download the source code from the official JARVIFY repository.
+- Run and use the software for your own personal purposes.
+- Make local copies only as reasonably necessary to install, back up, or run it.
+
+You may not, without prior written permission from the copyright holder:
+- Re-upload, republish, redistribute, mirror, or otherwise share the source code
+  or copies of the software, in whole or in substantial part.
+- Publish or distribute modified, forked, or derivative versions of the software.
+- Claim authorship of the project or present the software or its source code as
+  your own work.
+- Sell, sublicense, or commercially distribute the software.
+- Remove or alter copyright notices or this license.
+
+All rights not expressly granted above are reserved by the copyright holder.
+This license does not transfer ownership of the software or its copyright.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -19,3 +29,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+For permission beyond personal use, contact the copyright holder through the
+official JARVIFY GitHub repository.
