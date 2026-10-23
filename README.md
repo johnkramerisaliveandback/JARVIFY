@@ -69,9 +69,46 @@ python -m pip install -r requirements.txt
 
 ### 4. Download the Vosk wake-word model
 
-Download the official **vosk-model-small-en-us-0.15** model from the [Vosk models page](https://alphacephei.com/vosk/models). You can also use the [direct ZIP download](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip).
+**Everyone who clones or downloads JARVIFY from GitHub must download the Vosk model separately.** The model files are not included in the repository because they are a separate, relatively large download. Without this model, JARVIFY will stop at startup with a `Vosk model folder not found` error.
 
-Extract it into a folder named `models` inside the project directory. The final path must be:
+Choose either option below.
+
+**Option A — Download from the official Vosk website**
+
+1. Open the [official Vosk models page](https://alphacephei.com/vosk/models) or download the [vosk-model-small-en-us-0.15 ZIP directly](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip).
+2. Extract the ZIP.
+3. Move the extracted `vosk-model-small-en-us-0.15` folder into a folder named `models` inside your JARVIFY project folder.
+
+**Option B — Download and extract using PowerShell**
+
+Open PowerShell **in the JARVIFY project folder** (the folder containing `spotify_voice.py`) and run:
+
+```powershell
+# Create the models directory
+New-Item -ItemType Directory -Force -Path ".\models" | Out-Null
+
+# Download the official Vosk model ZIP
+$modelZip = Join-Path $env:TEMP "vosk-model-small-en-us-0.15.zip"
+Invoke-WebRequest `
+  -Uri "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip" `
+  -OutFile $modelZip
+
+# Extract the model into the project's models directory
+Expand-Archive -Path $modelZip -DestinationPath ".\models" -Force
+
+# Remove the downloaded ZIP (optional)
+Remove-Item $modelZip
+```
+
+Wait for the download and extraction to finish. Then confirm the expected model folder exists:
+
+```powershell
+Test-Path ".\models\vosk-model-small-en-us-0.15\am"
+```
+
+The command should return `True`. If it returns `False`, check that you ran PowerShell from the JARVIFY project folder and that the ZIP extracted correctly.
+
+The expected folder structure is:
 
 ```text
 JARVIFY/
@@ -86,9 +123,9 @@ JARVIFY/
         └── ...
 ```
 
-The `am` and `conf` directories should be directly inside `vosk-model-small-en-us-0.15`. Avoid leaving the model nested inside a second folder with the same name.
+The `am` and `conf` directories must be directly inside `vosk-model-small-en-us-0.15`. Avoid nesting the model inside another folder with the same name.
 
-The Vosk model is not included in the repository because it is a separate download. The project uses this model to listen for the English wake word, “Jarvis.”
+This model is used to detect the English wake word, “Jarvis.” It is separate from Faster-Whisper's transcription model, which is downloaded automatically on first launch.
 
 ### 5. Run JARVIFY
 
