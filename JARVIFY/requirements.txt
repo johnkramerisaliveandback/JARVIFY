@@ -1,0 +1,8 @@
+faster-whisper
+keyboard
+numpy
+sounddevice
+vosk
+pyautogui
+pygetwindow
+colorama
