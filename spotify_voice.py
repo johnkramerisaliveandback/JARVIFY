@@ -1,8 +1,7 @@
-"""
-JARVIFY — Spotify Voice Assistant
-Vosk: local wake-word detection.
-Faster-Whisper: local command transcription.
-Spotify: desktop app control; no Spotify API or API keys.
+"""Control Spotify Desktop with voice commands on Windows.
+
+Vosk listens for the wake word, and Faster-Whisper transcribes commands.
+Spotify is controlled through its desktop URI handler and media keys.
 """
 
 import os
@@ -24,7 +23,7 @@ from faster_whisper import WhisperModel
 from colorama import Fore, Style, init
 
 
-# -------------------- Configuration --------------------
+# Settings
 
 BANNER_TEXT = "JOHN KRAMER IS BACK"
 PROJECT_CREDIT = "github.com/johnkramerisback"
@@ -32,7 +31,7 @@ PROJECT_CREDIT = "github.com/johnkramerisback"
 WAKE_WORD = "jarvis"
 SAMPLE_RATE = 16000
 BLOCK_SIZE = 4000
-TRANSCRIPTION_MODEL = "small"  # Change to "medium" for higher accuracy.
+TRANSCRIPTION_MODEL = "small"  # Use "medium" for better recognition if you have enough RAM.
 
 BASE_DIR = Path(__file__).resolve().parent
 VOSK_MODEL_PATH = BASE_DIR / "models" / "vosk-model-small-en-us-0.15"
@@ -46,7 +45,7 @@ init(autoreset=True)
 pyautogui.PAUSE = 0.2
 
 
-# -------------------- Terminal UI --------------------
+# Terminal output
 
 def banner():
     os.system("cls" if os.name == "nt" else "clear")
@@ -79,7 +78,7 @@ def error(message):
     print(Fore.RED + "[ERROR] " + Style.RESET_ALL + message)
 
 
-# -------------------- Model loading --------------------
+# Load the speech models
 
 def load_models():
     global WHISPER_MODEL
@@ -106,10 +105,10 @@ def load_models():
     return vosk_model
 
 
-# -------------------- Record and transcribe commands --------------------
+# Listen for a command and turn it into text
 
 def record_command(max_seconds=12, silence_seconds=1.3):
-    """Record a phrase until speech is followed by silence."""
+    """Record a command and stop after a short pause."""
     info("Speak your command...")
 
     frames = []
@@ -158,7 +157,7 @@ def record_command(max_seconds=12, silence_seconds=1.3):
 
 
 def transcribe_command(audio):
-    """Transcribe speech locally; language is detected automatically."""
+    """Turn the recorded audio into text using the local Whisper model."""
     if audio is None or len(audio) == 0:
         return ""
 
@@ -189,7 +188,7 @@ def transcribe_command(audio):
         return ""
 
 
-# -------------------- Spotify desktop controls --------------------
+# Spotify Desktop
 
 def focus_spotify():
     try:
@@ -206,10 +205,7 @@ def focus_spotify():
 
 
 def spotify_search_and_play(query):
-    """
-    Open Spotify desktop search and press Enter to attempt to activate
-    the currently selected result. No Spotify API is used.
-    """
+    """Search Spotify Desktop and try to open the selected result."""
     query = query.strip()
     if not query:
         warning("Please say the song name.")
@@ -233,7 +229,7 @@ def spotify_search_and_play(query):
         error(f"Spotify control failed: {exc}")
 
 
-# -------------------- Windows media keys --------------------
+# Windows media keys
 
 def media_key(key_code):
     try:
@@ -275,7 +271,7 @@ def mute_volume():
     success("Mute toggled")
 
 
-# -------------------- Command parsing --------------------
+# Work out what the command means
 
 def normalize_command(text):
     text = text.lower().strip()
@@ -381,7 +377,7 @@ def handle_command(raw_text):
     info("Examples: 'play Set Fire to the Rain', 'pause', 'next song'.")
 
 
-# -------------------- Wake word and activation --------------------
+# Wake-word listener
 
 def activate_command():
     WAKE_ACTIVATION.set()
@@ -452,7 +448,7 @@ def wake_word_loop(vosk_model):
             time.sleep(1)
 
 
-# -------------------- Hotkeys and main --------------------
+# Keyboard shortcuts and startup
 
 def register_hotkeys():
     keyboard.add_hotkey("ctrl+space", activate_command)
